@@ -32,23 +32,24 @@
             this.headerPanel = new System.Windows.Forms.Panel();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.aboutLabel = new System.Windows.Forms.Label();
             this.randomizerLabel = new System.Windows.Forms.Label();
             this.importExportLabel = new System.Windows.Forms.Label();
             this.tabControlBox = new System.Windows.Forms.TabControl();
             this.importExportTabPage = new System.Windows.Forms.TabPage();
-            this.randomizerTabPage = new System.Windows.Forms.TabPage();
-            this.songsListBox = new System.Windows.Forms.ListBox();
-            this.importButton = new System.Windows.Forms.Button();
-            this.aboutTabPage = new System.Windows.Forms.TabPage();
             this.exportButton = new System.Windows.Forms.Button();
-            this.randomSongButton = new System.Windows.Forms.Button();
+            this.importButton = new System.Windows.Forms.Button();
+            this.songsListBox = new System.Windows.Forms.ListBox();
+            this.randomizerTabPage = new System.Windows.Forms.TabPage();
             this.randomSongBox = new System.Windows.Forms.TextBox();
             this.beatmapPageButton = new System.Windows.Forms.Button();
-            this.aboutText = new System.Windows.Forms.Label();
-            this.twitchLink = new System.Windows.Forms.LinkLabel();
+            this.randomSongButton = new System.Windows.Forms.Button();
+            this.aboutTabPage = new System.Windows.Forms.TabPage();
             this.twitterLink = new System.Windows.Forms.LinkLabel();
+            this.twitchLink = new System.Windows.Forms.LinkLabel();
+            this.aboutText = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.navigationPanel.SuspendLayout();
             this.tabControlBox.SuspendLayout();
@@ -63,6 +64,7 @@
             this.headerPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("headerPanel.BackgroundImage")));
             this.headerPanel.Controls.Add(this.minimizeButton);
             this.headerPanel.Controls.Add(this.closeButton);
+            this.headerPanel.Controls.Add(this.panel1);
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(800, 100);
@@ -99,6 +101,14 @@
             this.closeButton.TabIndex = 0;
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.CloseWindow);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 25);
+            this.panel1.TabIndex = 1;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // navigationPanel
             // 
@@ -178,56 +188,6 @@
             this.importExportTabPage.Size = new System.Drawing.Size(615, 424);
             this.importExportTabPage.TabIndex = 0;
             // 
-            // randomizerTabPage
-            // 
-            this.randomizerTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.randomizerTabPage.Controls.Add(this.randomSongBox);
-            this.randomizerTabPage.Controls.Add(this.beatmapPageButton);
-            this.randomizerTabPage.Controls.Add(this.randomSongButton);
-            this.randomizerTabPage.Location = new System.Drawing.Point(4, 14);
-            this.randomizerTabPage.Name = "randomizerTabPage";
-            this.randomizerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.randomizerTabPage.Size = new System.Drawing.Size(615, 424);
-            this.randomizerTabPage.TabIndex = 1;
-            // 
-            // songsListBox
-            // 
-            this.songsListBox.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.songsListBox.FormattingEnabled = true;
-            this.songsListBox.ItemHeight = 19;
-            this.songsListBox.Location = new System.Drawing.Point(39, 109);
-            this.songsListBox.Name = "songsListBox";
-            this.songsListBox.Size = new System.Drawing.Size(320, 194);
-            this.songsListBox.TabIndex = 0;
-            // 
-            // importButton
-            // 
-            this.importButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(48)))), ((int)(((byte)(49)))));
-            this.importButton.FlatAppearance.BorderSize = 0;
-            this.importButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(68)))), ((int)(((byte)(71)))));
-            this.importButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(56)))), ((int)(((byte)(58)))));
-            this.importButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.importButton.Location = new System.Drawing.Point(39, 38);
-            this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(120, 40);
-            this.importButton.TabIndex = 1;
-            this.importButton.Text = "Import";
-            this.importButton.UseVisualStyleBackColor = false;
-            this.importButton.Click += new System.EventHandler(this.ImportSongs);
-            // 
-            // aboutTabPage
-            // 
-            this.aboutTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.aboutTabPage.Controls.Add(this.twitterLink);
-            this.aboutTabPage.Controls.Add(this.twitchLink);
-            this.aboutTabPage.Controls.Add(this.aboutText);
-            this.aboutTabPage.Location = new System.Drawing.Point(4, 14);
-            this.aboutTabPage.Name = "aboutTabPage";
-            this.aboutTabPage.Size = new System.Drawing.Size(615, 424);
-            this.aboutTabPage.TabIndex = 2;
-            // 
             // exportButton
             // 
             this.exportButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(48)))), ((int)(((byte)(49)))));
@@ -246,22 +206,44 @@
             this.exportButton.Visible = false;
             this.exportButton.Click += new System.EventHandler(this.ExportToFile);
             // 
-            // randomSongButton
+            // importButton
             // 
-            this.randomSongButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(48)))), ((int)(((byte)(49)))));
-            this.randomSongButton.FlatAppearance.BorderSize = 0;
-            this.randomSongButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(68)))), ((int)(((byte)(71)))));
-            this.randomSongButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(56)))), ((int)(((byte)(58)))));
-            this.randomSongButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.randomSongButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.randomSongButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.randomSongButton.Location = new System.Drawing.Point(39, 38);
-            this.randomSongButton.Name = "randomSongButton";
-            this.randomSongButton.Size = new System.Drawing.Size(120, 40);
-            this.randomSongButton.TabIndex = 1;
-            this.randomSongButton.Text = "Randomize!";
-            this.randomSongButton.UseVisualStyleBackColor = false;
-            this.randomSongButton.Click += new System.EventHandler(this.ChooseRandomSong);
+            this.importButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(48)))), ((int)(((byte)(49)))));
+            this.importButton.FlatAppearance.BorderSize = 0;
+            this.importButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(68)))), ((int)(((byte)(71)))));
+            this.importButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(56)))), ((int)(((byte)(58)))));
+            this.importButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.importButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.importButton.Location = new System.Drawing.Point(39, 38);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(120, 40);
+            this.importButton.TabIndex = 1;
+            this.importButton.Text = "Import";
+            this.importButton.UseVisualStyleBackColor = false;
+            this.importButton.Click += new System.EventHandler(this.ImportSongs);
+            // 
+            // songsListBox
+            // 
+            this.songsListBox.Font = new System.Drawing.Font("Calibri Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.songsListBox.FormattingEnabled = true;
+            this.songsListBox.ItemHeight = 19;
+            this.songsListBox.Location = new System.Drawing.Point(39, 109);
+            this.songsListBox.Name = "songsListBox";
+            this.songsListBox.Size = new System.Drawing.Size(320, 194);
+            this.songsListBox.TabIndex = 0;
+            // 
+            // randomizerTabPage
+            // 
+            this.randomizerTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.randomizerTabPage.Controls.Add(this.randomSongBox);
+            this.randomizerTabPage.Controls.Add(this.beatmapPageButton);
+            this.randomizerTabPage.Controls.Add(this.randomSongButton);
+            this.randomizerTabPage.Location = new System.Drawing.Point(4, 14);
+            this.randomizerTabPage.Name = "randomizerTabPage";
+            this.randomizerTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.randomizerTabPage.Size = new System.Drawing.Size(615, 424);
+            this.randomizerTabPage.TabIndex = 1;
             // 
             // randomSongBox
             // 
@@ -288,16 +270,46 @@
             this.beatmapPageButton.UseVisualStyleBackColor = false;
             this.beatmapPageButton.Click += new System.EventHandler(this.GoToSongPage);
             // 
-            // aboutText
+            // randomSongButton
             // 
-            this.aboutText.AutoSize = true;
-            this.aboutText.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold);
-            this.aboutText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(31)))), ((int)(((byte)(32)))));
-            this.aboutText.Location = new System.Drawing.Point(39, 38);
-            this.aboutText.Name = "aboutText";
-            this.aboutText.Size = new System.Drawing.Size(193, 54);
-            this.aboutText.TabIndex = 0;
-            this.aboutText.Text = "Version 0.2\r\nCreated by Verathis";
+            this.randomSongButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(48)))), ((int)(((byte)(49)))));
+            this.randomSongButton.FlatAppearance.BorderSize = 0;
+            this.randomSongButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(68)))), ((int)(((byte)(71)))));
+            this.randomSongButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(56)))), ((int)(((byte)(58)))));
+            this.randomSongButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.randomSongButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.randomSongButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.randomSongButton.Location = new System.Drawing.Point(39, 38);
+            this.randomSongButton.Name = "randomSongButton";
+            this.randomSongButton.Size = new System.Drawing.Size(120, 40);
+            this.randomSongButton.TabIndex = 1;
+            this.randomSongButton.Text = "Randomize!";
+            this.randomSongButton.UseVisualStyleBackColor = false;
+            this.randomSongButton.Click += new System.EventHandler(this.ChooseRandomSong);
+            // 
+            // aboutTabPage
+            // 
+            this.aboutTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.aboutTabPage.Controls.Add(this.twitterLink);
+            this.aboutTabPage.Controls.Add(this.twitchLink);
+            this.aboutTabPage.Controls.Add(this.aboutText);
+            this.aboutTabPage.Location = new System.Drawing.Point(4, 14);
+            this.aboutTabPage.Name = "aboutTabPage";
+            this.aboutTabPage.Size = new System.Drawing.Size(615, 424);
+            this.aboutTabPage.TabIndex = 2;
+            // 
+            // twitterLink
+            // 
+            this.twitterLink.AutoSize = true;
+            this.twitterLink.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold);
+            this.twitterLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(31)))), ((int)(((byte)(32)))));
+            this.twitterLink.Location = new System.Drawing.Point(44, 325);
+            this.twitterLink.Name = "twitterLink";
+            this.twitterLink.Size = new System.Drawing.Size(76, 27);
+            this.twitterLink.TabIndex = 1;
+            this.twitterLink.TabStop = true;
+            this.twitterLink.Text = "Twitter";
+            this.twitterLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoToTwitterPage);
             // 
             // twitchLink
             // 
@@ -312,18 +324,16 @@
             this.twitchLink.Text = "Twitch Channel";
             this.twitchLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoToTwitchPage);
             // 
-            // twitterLink
+            // aboutText
             // 
-            this.twitterLink.AutoSize = true;
-            this.twitterLink.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold);
-            this.twitterLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(31)))), ((int)(((byte)(32)))));
-            this.twitterLink.Location = new System.Drawing.Point(44, 325);
-            this.twitterLink.Name = "twitterLink";
-            this.twitterLink.Size = new System.Drawing.Size(76, 27);
-            this.twitterLink.TabIndex = 1;
-            this.twitterLink.TabStop = true;
-            this.twitterLink.Text = "Twitter";
-            this.twitterLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoToTwitterPage);
+            this.aboutText.AutoSize = true;
+            this.aboutText.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Bold);
+            this.aboutText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(31)))), ((int)(((byte)(32)))));
+            this.aboutText.Location = new System.Drawing.Point(39, 38);
+            this.aboutText.Name = "aboutText";
+            this.aboutText.Size = new System.Drawing.Size(193, 54);
+            this.aboutText.TabIndex = 0;
+            this.aboutText.Text = "Version 0.2.1\r\nCreated by Verathis";
             // 
             // MainForm
             // 
@@ -372,6 +382,7 @@
         private System.Windows.Forms.Label aboutText;
         private System.Windows.Forms.LinkLabel twitchLink;
         private System.Windows.Forms.LinkLabel twitterLink;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
