@@ -18,11 +18,13 @@ namespace OsuSongListCompanion
         string[] folders;
         string defaultPath = Environment.ExpandEnvironmentVariables("%APPDATA%");
         string roamingFolder = "\\Roaming";
-        string fileName = String.Format(@"{0}\songlist.txt", Application.StartupPath);
+        //string fileName = String.Format(@"{0}\songlist.txt", Application.StartupPath);
         Random randomSong = new Random();
         string beatmapID;
         string beatmapLink;
         string baseLink = "https://osu.ppy.sh/beatmapsets/";
+
+        string selectedPath = "";
 
         public MainForm()
         {
@@ -98,11 +100,11 @@ namespace OsuSongListCompanion
             {
                 songsListBox.Items.Clear();
                 folders = Directory.GetDirectories(FBD.SelectedPath);
+                selectedPath = FBD.SelectedPath;
 
                 foreach (string folder in folders)
                 {
-                    string formattedFolder = folder.Remove(0, folder.LastIndexOf('\\') + 1);
-                    songsListBox.Items.Add(formattedFolder);
+                    songsListBox.Items.Add(folder.Remove(0, selectedPath.Length + 1));
                 }
                 
                 exportButton.Visible = true;
@@ -123,13 +125,20 @@ namespace OsuSongListCompanion
         private void ChooseRandomSong(object sender, EventArgs e)
         {
             int index = randomSong.Next(folders.Count());
-            string formattedFolder = folders[index].Remove(0, folders[index].LastIndexOf('\\') + 1);
-            randomSongBox.Text = formattedFolder;
+            string formattedFolder = folders[index].Remove(0, selectedPath.Length + 1);
+            randomSongBox.Text = folders[index].Remove(0, selectedPath.Length + 1);
 
             if (beatmapPageButton.Visible == false)
             {
                 beatmapPageButton.Visible = true;
             }
+        }
+
+        private void GoToSongPage(object sender, EventArgs e)
+        {
+            beatmapID = randomSongBox.Text;
+            beatmapLink = baseLink + beatmapID.Remove(beatmapID.IndexOf(" "));
+            Process.Start(beatmapLink);
         }
 
         private void GoToTwitchPage(object sender, LinkLabelLinkClickedEventArgs e)
@@ -140,14 +149,7 @@ namespace OsuSongListCompanion
         private void GoToTwitterPage(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("www.twitter.com/Verathis");
-        }
-
-        private void GoToSongPage(object sender, EventArgs e)
-        {
-            beatmapID = randomSongBox.Text;
-            beatmapLink = baseLink + beatmapID.Remove(beatmapID.IndexOf(" "));
-            Process.Start(beatmapLink);
-        }
+        }        
 
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
